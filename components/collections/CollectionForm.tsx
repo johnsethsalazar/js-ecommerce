@@ -88,7 +88,10 @@ const CollectionForm = () => {
               <FormItem>
                 <FormLabel>Image</FormLabel>
                 <FormControl>
-                  <ImageUpload />
+                  <ImageUpload 
+                    value={field.value ? [field.value] : []} 
+                    onChange={(url) => field.onChange(url)} 
+                    onRemove={() => field.onChange("")} />
                 </FormControl>
                 <FormDescription>
                   The image of the collection.
