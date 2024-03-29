@@ -14,6 +14,7 @@ import {
   CommandShortcut,
 } from "@/components/ui/command";
 import { Badge } from "../ui/badge";
+import { X } from "lucide-react";
 
 interface MultiSelectProps {
   placeholder: string;
@@ -48,7 +49,12 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     <Command className="overflow-visible bg-white">
       <div className="flex gap-1 flex-wrap border rounded-md">
         {selected.map((collection) => (
-          <Badge key={collection._id}>{collection.title}</Badge>
+          <Badge key={collection._id}>
+            {collection.title}
+              <button className="ml-1 hover:text-red-1">
+                <X className="h-3 w-3" onClick={() => onRemove(collection._id)}/>
+              </button>
+            </Badge>
         ))}
         <CommandInput
           placeholder={placeholder}
