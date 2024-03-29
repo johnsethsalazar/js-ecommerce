@@ -18,10 +18,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "../ui/textarea";
 import ImageUpload from "../custom ui/ImageUpload";
 import { useParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Delete from "../custom ui/Delete";
 import MultiText from "../custom ui/MultiText";
+import MultiSelect from "../custom ui/MultiSelect";
 
 const formSchema = z.object({
   title: z.string().min(2).max(20),
@@ -45,6 +46,27 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
   //const params = useParams();
 
   const [loading, setLoading] = useState(false);
+  const [collections, setCollections] = useState<CollectionType[]>([]);
+
+  const getCollections = async () => {
+    try{
+      setLoading(true)
+      const res = await fetch("/api/collections", {
+        method: "GET",
+      })
+      const data = await res.json()
+      setCollections(data)
+      setLoading(false)
+    }catch(err) {
+      console.log("[collections_GET]", err)
+      toast.error("Something went wrong. Please try again.")
+    }
+  }
+
+  useEffect(() => {
+    getCollections()
+  }, [])
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -252,6 +274,29 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                 </FormItem>
               )}
             />
+            <FormField
+              control={form.control}
+              name="collections"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Collections</FormLabel>
+                  <FormControl>
+                    <MultiSelect
+                      placeholder="Collections"
+                      collections={collections}
+                      value={field.value}
+                      onChange={(_id) => field.onChange([...field.value, _id])}
+                      onRemove={(idToRemove) =>
+                        field.onChange([
+                          ...field.value.filter((collectionId) => collectionId !== idToRemove),
+                        ])
+                      }
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-1" />
+                </FormItem>
+              )}
+            />
           </div>
           <div className="flex gap-10">
             <Button type="submit" className="bg-blue-1 text-white">
@@ -272,5 +317,3 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
 };
 
 export default ProductForm;
-
-// 3:02:52 - Pressing enter opens the upload image. Fix this.
