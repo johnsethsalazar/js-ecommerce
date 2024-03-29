@@ -45,6 +45,8 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
     ) as CollectionType[];
   }
 
+  const selectables = collections.filter((collection) => !selected.includes(collection));
+
   return (
     <Command className="overflow-visible bg-white">
       <div className="flex gap-1 flex-wrap border rounded-md">
@@ -67,7 +69,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       <div className="relative mt-2">
         {open && (
           <CommandGroup className="absolute w-full z-10 top-0 overflow-auto border rounded-md shadow-md">
-            {collections.map((collection) => (
+            {selectables.map((collection) => (
               <CommandItem
                 key={collection._id}
                 onMouseDown={(e) => {
