@@ -22,7 +22,7 @@ const MultiText: React.FC<MultiTextProps> = ({
 }) => {
   const [inputValue, setInputValue] = React.useState("");
 
-  const addTag = (item: string) => {
+  const addValue = (item: string) => {
     onChange(item);
     setInputValue("");
   };
@@ -36,18 +36,18 @@ const MultiText: React.FC<MultiTextProps> = ({
         onKeyDown={(e) => {
           if (e.key === "Enter") {
             e.preventDefault(); // Added this as a fix for when the enter is pressed the ImageUpload is being loaded for the ProductForm page.
-            addTag(inputValue);
+            addValue(inputValue);
           }
         }}
       />
       <div className="flex gap-1 flex-wrap mt-4">
-        {value.map((tag, index) => (
+        {value.map((item, index) => (
           <Badge key={index} className="bg-grey-1 text-white">
-            {tag}
+            {item}
             <Button
               className="ml-1 rounded-full outline-none hover:bg-red-1"
               size="sm"
-              onClick={() => onRemove(tag)}
+              onClick={() => onRemove(item)}
             >
               <X className="h-3 w-3" />
             </Button>

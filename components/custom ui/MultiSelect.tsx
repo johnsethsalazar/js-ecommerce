@@ -92,4 +92,3 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 };
 
 export default MultiSelect;
-// 3/25/22

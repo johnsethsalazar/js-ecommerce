@@ -31,7 +31,7 @@ const formSchema = z.object({
   category: z.string(),
   collections: z.array(z.string()),
   tags: z.array(z.string()),
-  size: z.array(z.string()),
+  sizes: z.array(z.string()),
   colors: z.array(z.string()),
   price: z.coerce.number().min(0.1),
   expense: z.coerce.number().min(0.1),
@@ -289,6 +289,50 @@ const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {
                       onRemove={(idToRemove) =>
                         field.onChange([
                           ...field.value.filter((collectionId) => collectionId !== idToRemove),
+                        ])
+                      }
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-1" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="colors"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Colors</FormLabel>
+                  <FormControl>
+                    <MultiText
+                      placeholder="Colors"
+                      value={field.value}
+                      onChange={(color) => field.onChange([...field.value, color])}
+                      onRemove={(colorToRemove) =>
+                        field.onChange([
+                          ...field.value.filter((color) => color !== colorToRemove),
+                        ])
+                      }
+                    />
+                  </FormControl>
+                  <FormMessage className="text-red-1" />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="sizes"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Sizes</FormLabel>
+                  <FormControl>
+                    <MultiText
+                      placeholder="Sizes"
+                      value={field.value}
+                      onChange={(size) => field.onChange([...field.value, size])}
+                      onRemove={(sizeToRemove) =>
+                        field.onChange([
+                          ...field.value.filter((size) => size !== sizeToRemove),
                         ])
                       }
                     />
