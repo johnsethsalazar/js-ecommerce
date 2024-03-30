@@ -79,6 +79,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                   onChange(collection._id);
                   setInputValue("")
                 }}
+                className="hover:bg-grey-2 cursor-pointer"
               >
                 {collection.title}
               </CommandItem>
