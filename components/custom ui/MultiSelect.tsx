@@ -77,6 +77,7 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
                 }}
                 onSelect={() => {
                   onChange(collection._id);
+                  setInputValue("")
                 }}
               >
                 {collection.title}
@@ -90,3 +91,4 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 };
 
 export default MultiSelect;
+// 3/25/22
