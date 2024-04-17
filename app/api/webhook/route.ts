@@ -21,7 +21,8 @@ export const POST = async (req: NextRequest) => {
 
     if (event.type === "checkout.session.completed") {
       const session = event.data.object;
-
+      console.log("[webhook_POST]", session);
+      
       const customerInfo = {
         clerkId: session.client_reference_id,
         name: session?.customer_details?.name,
