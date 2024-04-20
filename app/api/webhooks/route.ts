@@ -17,7 +17,7 @@ export const POST = async (req: NextRequest) => {
 
     if (event.type === "checkout.session.completed") {
       const session = event.data.object
-      console.log("webhooks_POST", session)
+      console.log("[webhooks_POST]", session)
 
       const customerInfo = {
         clerkId: session?.client_reference_id,
