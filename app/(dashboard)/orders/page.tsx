@@ -1,10 +1,16 @@
+import { DataTable } from "@/components/custom ui/DataTable"
+import { Separator } from "@/components/ui/separator"
+
 const Orders = async () => {
   const res = await fetch("http://localhost:3000/api/orders")
   const orders = await res.json()
 
-  console.log(orders)
+  //console.log(orders)
   return (
-    <div>Orders</div>
+    <div className="px-10 py-5">
+      <p className="text-heading2-bold">Orders</p>
+      <Separator className="bg-grey-1 my-5"/>
+    </div>
   )
 }
 
