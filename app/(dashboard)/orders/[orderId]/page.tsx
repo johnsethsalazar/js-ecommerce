@@ -26,7 +26,7 @@ const OrderDetails = async ({ params }: { params: { orderId: string } }) => {
       <p className="text-base-bold">
         Shipping Rate ID: <span className="text-base-medium">{orderDetails.shippingRate}</span>
       </p>
-      <DataTable columns={columns} data={orderDetails} searchKey="product"/>
+      <DataTable columns={columns} data={orderDetails.products} searchKey="product"/>
     </div>
   )
 }
