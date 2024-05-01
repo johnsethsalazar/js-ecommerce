@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { getSalesPerMonth, getTotalCustomers, getTotalSales } from "@/lib/actions/actions";
 import { UserButton } from "@clerk/nextjs";
-import { CircleDollarSign } from "lucide-react";
+import { CircleDollarSign, ShoppingBag } from "lucide-react";
 
 export default async function Home() {
   const totalRevenue = await getTotalSales().then((data) => data.totalRevenue);
@@ -23,7 +23,16 @@ export default async function Home() {
             <CircleDollarSign className="max-sm:hidden"/>
           </CardHeader>
           <CardContent>
-            <p className="text-body-bold">${totalRevenue}</p>
+            <p className="text-body-bold">$ {totalRevenue}</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row justify-between items-center">
+            <CardTitle>Total Orders</CardTitle>
+            <ShoppingBag className="max-sm:hidden"/>
+          </CardHeader>
+          <CardContent>
+            <p className="text-body-bold">{totalOrders}</p>
           </CardContent>
         </Card>
       </div>
