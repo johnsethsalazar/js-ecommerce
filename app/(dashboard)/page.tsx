@@ -1,13 +1,18 @@
+import SalesChart from "@/components/custom ui/SalesChart";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
-import { getSalesPerMonth, getTotalCustomers, getTotalSales } from "@/lib/actions/actions";
+import {
+  getSalesPerMonth,
+  getTotalCustomers,
+  getTotalSales,
+} from "@/lib/actions/actions";
 import { UserButton } from "@clerk/nextjs";
 import { CircleDollarSign, ShoppingBag, UserRoundIcon } from "lucide-react";
 
 export default async function Home() {
   const totalRevenue = await getTotalSales().then((data) => data.totalRevenue);
   const totalOrders = await getTotalSales().then((data) => data.totalOrders);
-  const totalCustomers = await getTotalCustomers()
+  const totalCustomers = await getTotalCustomers();
 
   const graphData = await getSalesPerMonth();
 
@@ -20,7 +25,7 @@ export default async function Home() {
         <Card>
           <CardHeader className="flex flex-row justify-between items-center">
             <CardTitle>Total Revenue</CardTitle>
-            <CircleDollarSign className="max-sm:hidden"/>
+            <CircleDollarSign className="max-sm:hidden" />
           </CardHeader>
           <CardContent>
             <p className="text-body-bold">$ {totalRevenue}</p>
@@ -29,7 +34,7 @@ export default async function Home() {
         <Card>
           <CardHeader className="flex flex-row justify-between items-center">
             <CardTitle>Total Orders</CardTitle>
-            <ShoppingBag className="max-sm:hidden"/>
+            <ShoppingBag className="max-sm:hidden" />
           </CardHeader>
           <CardContent>
             <p className="text-body-bold">{totalOrders}</p>
@@ -38,10 +43,18 @@ export default async function Home() {
         <Card>
           <CardHeader className="flex flex-row justify-between items-center">
             <CardTitle>Total Customers</CardTitle>
-            <UserRoundIcon className="max-sm:hidden"/>
+            <UserRoundIcon className="max-sm:hidden" />
           </CardHeader>
           <CardContent>
             <p className="text-body-bold">{totalCustomers}</p>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row justify-between items-center">
+            <CardTitle>Sales Chart ($)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <SalesChart data={graphData} />
           </CardContent>
         </Card>
       </div>
