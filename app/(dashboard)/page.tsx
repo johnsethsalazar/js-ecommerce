@@ -49,15 +49,16 @@ export default async function Home() {
             <p className="text-body-bold">{totalCustomers}</p>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="flex flex-row justify-between items-center">
-            <CardTitle>Sales Chart ($)</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <SalesChart data={graphData} />
-          </CardContent>
-        </Card>
       </div>
+
+      <Card className="mt-10">
+        <CardHeader>
+          <CardTitle>Sales Chart ($)</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <SalesChart data={graphData} />
+        </CardContent>
+      </Card>
     </div>
   );
 }
