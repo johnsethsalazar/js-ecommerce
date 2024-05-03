@@ -6,6 +6,7 @@ import {
   Line,
   LineChart,
   ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
@@ -21,6 +22,7 @@ const SalesChart = ({ data }: { data: any[] }) => {
         <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
         <XAxis dataKey="name" />
         <YAxis />
+        <Tooltip />
       </LineChart>
     </ResponsiveContainer>
   );
