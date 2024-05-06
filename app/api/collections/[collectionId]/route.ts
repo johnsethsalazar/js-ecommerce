@@ -10,7 +10,7 @@ export const GET = async (
 ) => {
   try {
     await connectToDB();
-    const collection = await Collection.findById(params.collectionId);
+    const collection = await Collection.findById(params.collectionId).populate({path: "products", model: Product});
 
     if (!collection) {
       return new NextResponse(
@@ -38,7 +38,7 @@ export const POST = async (
 
     await connectToDB();
 
-    let collection = await Collection.findById(params.collectionId);
+    let collection = await Collection.findById(params.collectionId)
 
     if (!collection) {
       return new NextResponse("Collection not found", { status: 404 });
@@ -89,3 +89,5 @@ export const DELETE = async (
     return new NextResponse("Internal Server Error", { status: 500 });
   }
 };
+
+export const dynamic = "force-dynamic";
