@@ -24,8 +24,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     <div>
       <div className="mb-4 flex flex-wrap item-center gap-4">
         {value.map((url) => (
-          // eslint-disable-next-line react/jsx-key
-          <div className="relative w-[200px] h-[200px]">
+          <div key={url} className="relative w-[200px] h-[200px]">
             <div className="absolute top-0 right-0 z-10">
               <Button onClick={() => onRemove(url)} size="sm" className="bg-red-1 text-white">
                 <Trash className="h-4 w-4"/>
