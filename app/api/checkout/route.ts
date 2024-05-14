@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { stripe } from "@/lib/stripe"; // Separate this from api > checkout > route.ts to here. In the local test it's working well but on deployment it does not.
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",

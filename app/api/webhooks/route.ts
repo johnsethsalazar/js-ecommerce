@@ -2,7 +2,7 @@ import Customer from "@/lib/models/Customer";
 import Order from "@/lib/models/Order";
 import { connectToDB } from "@/lib/mongoDB";
 import { NextRequest, NextResponse } from "next/server";
-import { stripe } from "@/lib/stripe";
+import { stripe } from "@/lib/stripe"; // Separate this from api > checkout > route.ts to here. In the local test it's working well but on deployment it does not.
 
 export const POST = async (req: NextRequest) => {
   try {
