@@ -5,5 +5,5 @@ const CreateProduct = () => {
     <ProductForm />
   )
 }
-
+export const dynamic = "force-dynamic";
 export default CreateProduct

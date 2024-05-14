@@ -83,3 +83,5 @@ export const POST = async (req: NextRequest) => {
 }
 
 // Finally Solved the empty orders and customers mongodb bug. Problem was that I inputted the wrong webhook listen url. I inputted stripe listen --forward-to localhost:4242/webhook instead of stripe listen --forward-to localhost:3000/api/webhooks.
+
+export const dynamic = "force-dynamic";

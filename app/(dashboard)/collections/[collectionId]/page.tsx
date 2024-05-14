@@ -29,5 +29,5 @@ const CollectionDetails = ({params}: {params: {collectionId: string}}) => {
     <CollectionForm initialData={collectionDetails} />
   )
 }
-
+export const dynamic = "force-dynamic";
 export default CollectionDetails
